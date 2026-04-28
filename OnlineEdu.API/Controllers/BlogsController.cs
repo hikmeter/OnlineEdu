@@ -32,15 +32,31 @@ namespace OnlineEdu.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateBlogDto dto)
         {
-            await _blogService.CreateBlog(dto);
-            return Ok("Blog Başarıyla Oluşturuldu!");
+            try
+            {
+                await _blogService.CreateBlog(dto);
+                return Ok("Blog Başarıyla Oluşturuldu!");
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                var errors = ex.Errors.Select(x => x.ErrorMessage).ToList();
+                return BadRequest(errors);
+            }
         }
 
         [HttpPut]
         public async Task<IActionResult> Update(UpdateBlogDto dto)
         {
-            await _blogService.UpdateBlog(dto);
-            return Ok("Blog Başarıyla Güncellendi!");
+            try
+            {
+                await _blogService.UpdateBlog(dto);
+                return Ok("Blog Başarıyla Güncellendi!");
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                var errors = ex.Errors.Select(x => x.ErrorMessage).ToList();
+                return BadRequest(errors);
+            }
         }
     }
 }

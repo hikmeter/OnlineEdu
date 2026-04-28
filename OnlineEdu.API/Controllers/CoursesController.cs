@@ -32,15 +32,31 @@ namespace OnlineEdu.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateCourseDto dto)
         {
-            await _courseService.CreateCourse(dto);
-            return Ok("Kurs Başarıyla Oluşturuldu!");
+            try
+            {
+                await _courseService.CreateCourse(dto);
+                return Ok("Kurs Başarıyla Oluşturuldu!");
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                var errors = ex.Errors.Select(e => e.ErrorMessage).ToList();
+                return BadRequest(errors);
+            }
         }
 
         [HttpPut]
         public async Task<IActionResult> Update(UpdateCourseDto dto)
         {
-            await _courseService.UpdateCourse(dto);
-            return Ok("Kurs Başarıyla Güncellendi!");
+            try
+            {
+                await _courseService.UpdateCourse(dto);
+                return Ok("Kurs Başarıyla Güncellendi!");
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                var errors = ex.Errors.Select(e => e.ErrorMessage).ToList();
+                return BadRequest(errors);
+            }
         }
     }
 }

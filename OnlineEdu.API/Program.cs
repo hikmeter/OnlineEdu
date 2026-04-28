@@ -1,7 +1,11 @@
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using OnlineEdu.Business.Abstract;
 using OnlineEdu.Business.Concrete;
 using OnlineEdu.Business.Mapping;
+using OnlineEdu.Business.Validators.BlogValidators;
+using OnlineEdu.Business.Validators.CourseValidators;
+using OnlineEdu.Business.Validators.SubscriberValidators;
 using OnlineEdu.DataAccess.Abstract;
 using OnlineEdu.DataAccess.Context;
 using OnlineEdu.DataAccess.Repositories;
@@ -23,6 +27,7 @@ builder.Services.AddScoped(typeof(IMessageService), typeof(MessageService));
 builder.Services.AddScoped(typeof(ISocialMediaService), typeof(SocialMediaService));
 builder.Services.AddScoped(typeof(ISubscriberService), typeof(SubscriberService));
 builder.Services.AddScoped(typeof(ITestimonialService), typeof(TestimonialService));
+
 builder.Services.AddAutoMapper(typeof(AboutMapping));
 builder.Services.AddAutoMapper(typeof(BannerMapping));
 builder.Services.AddAutoMapper(typeof(BlogMapping));
@@ -34,6 +39,13 @@ builder.Services.AddAutoMapper(typeof(MessageMapping));
 builder.Services.AddAutoMapper(typeof(SocialMediaMapping));
 builder.Services.AddAutoMapper(typeof(SubscriberMapping));
 builder.Services.AddAutoMapper(typeof(TestimonialMapping));
+
+builder.Services.AddValidatorsFromAssemblyContaining<CreateBlogDtoValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<UpdateBlogDtoValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateCourseDtoValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<UpdateCourseDtoValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateSubscriberDtoValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<UpdateSubscriberDtoValidator>();
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"));

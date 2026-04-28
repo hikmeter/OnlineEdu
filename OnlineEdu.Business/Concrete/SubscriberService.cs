@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using OnlineEdu.Business.Abstract;
 using OnlineEdu.DataAccess.Abstract;
 using OnlineEdu.Dto.Dtos.SubscriberDtos;
@@ -6,10 +7,15 @@ using OnlineEdu.Entity.Entities;
 
 namespace OnlineEdu.Business.Concrete
 {
-    public class SubscriberService(IRepository<Subscriber> _repository, IMapper _mapper) : ISubscriberService
+    public class SubscriberService(IRepository<Subscriber> _repository, IMapper _mapper, IValidator<CreateSubscriberDto> _createValidator, IValidator<UpdateSubscriberDto> _updateValidator) : ISubscriberService
     {
         public async Task CreateSubscriber(CreateSubscriberDto dto)
         {
+            var validation = await _createValidator.ValidateAsync(dto);
+            if (!validation.IsValid)
+            {
+                throw new ValidationException(validation.Errors);
+            }
             var result = _mapper.Map<Subscriber>(dto);
             await _repository.CreateAsync(result);
         }
@@ -34,6 +40,11 @@ namespace OnlineEdu.Business.Concrete
 
         public async Task UpdateSubscriber(UpdateSubscriberDto dto)
         {
+            var validation = await _updateValidator.ValidateAsync(dto);
+            if (!validation.IsValid)
+            {
+                throw new ValidationException(validation.Errors);
+            }
             var value = _mapper.Map<Subscriber>(dto);
             await _repository.UpdateAsync(value);
         }

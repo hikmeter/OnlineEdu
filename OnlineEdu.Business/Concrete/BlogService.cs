@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using OnlineEdu.Business.Abstract;
 using OnlineEdu.DataAccess.Abstract;
 using OnlineEdu.Dto.Dtos.BlogDtos;
@@ -6,10 +7,15 @@ using OnlineEdu.Entity.Entities;
 
 namespace OnlineEdu.Business.Concrete
 {
-    public class BlogService(IRepository<Blog> _repository, IMapper _mapper) : IBlogService
+    public class BlogService(IRepository<Blog> _repository, IMapper _mapper, IValidator<CreateBlogDto> _createValidator, IValidator<UpdateBlogDto> _updateValidator) : IBlogService
     {
         public async Task CreateBlog(CreateBlogDto dto)
         {
+            var validation = await _createValidator.ValidateAsync(dto);
+            if (!validation.IsValid)
+            {
+                throw new ValidationException(validation.Errors);
+            }
             var result = _mapper.Map<Blog>(dto);
             await _repository.CreateAsync(result);
         }
@@ -34,6 +40,11 @@ namespace OnlineEdu.Business.Concrete
 
         public async Task UpdateBlog(UpdateBlogDto dto)
         {
+            var validation = await _updateValidator.ValidateAsync(dto);
+            if (!validation.IsValid)
+            {
+                throw new ValidationException(validation.Errors);
+            }
             var value = _mapper.Map<Blog>(dto);
             await _repository.UpdateAsync(value);
         }

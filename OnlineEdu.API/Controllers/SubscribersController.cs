@@ -32,15 +32,31 @@ namespace OnlineEdu.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateSubscriberDto dto)
         {
-            await _subscriberService.CreateSubscriber(dto);
-            return Ok("Abone Başarıyla Eklendi!");
+            try
+            {
+                await _subscriberService.CreateSubscriber(dto);
+                return Ok("Abone Başarıyla Eklendi!");
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                var errors = ex.Errors.Select(e => e.ErrorMessage).ToList();
+                return BadRequest(errors);
+            }
         }
 
         [HttpPut]
         public async Task<IActionResult> Update(UpdateSubscriberDto dto)
         {
-            await _subscriberService.UpdateSubscriber(dto);
-            return Ok("Abone Başarıyla Güncellendi!");
+            try
+            {
+                await _subscriberService.UpdateSubscriber(dto);
+                return Ok("Abone Başarıyla Güncellendi!");
+            }
+            catch (FluentValidation.ValidationException ex)
+            {
+                var errors = ex.Errors.Select(e => e.ErrorMessage).ToList();
+                return BadRequest(errors);
+            }
         }
     }
 }
