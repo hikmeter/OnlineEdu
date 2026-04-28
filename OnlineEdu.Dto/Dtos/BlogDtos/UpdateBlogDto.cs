@@ -1,6 +1,4 @@
-﻿using OnlineEdu.Dto.Dtos.BlogCategoryDtos;
-
-namespace OnlineEdu.Dto.Dtos.BlogDtos
+﻿namespace OnlineEdu.Dto.Dtos.BlogDtos
 {
     public class UpdateBlogDto
     {
@@ -10,6 +8,5 @@ namespace OnlineEdu.Dto.Dtos.BlogDtos
         public string Content { get; set; }
         public string ImageUrl { get; set; }
         public DateTime BlogDate { get; set; }
-        public ResultBlogCategoryDto BlogCategory { get; set; }
     }
 }
