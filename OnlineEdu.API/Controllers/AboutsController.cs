@@ -22,11 +22,11 @@ namespace OnlineEdu.API.Controllers
             return Ok(value);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             await _aboutService.DeleteAbout(id);
-            return Ok("Hakkımızda Alanı Başarıyla Silindi!");
+            return Ok();
         }
 
         [HttpPost]

@@ -7,7 +7,7 @@ namespace OnlineEdu.Business.Validators.BlogValidators
     {
         public UpdateBlogDtoValidator()
         {
-            RuleFor(x => x.BlogId).NotEmpty().WithMessage("Blog ID değeri boş bırakalamaz.");
+            RuleFor(x => x.BlogId).NotEmpty().WithMessage("Blog ID değeri boş bırakılamaz.");
 
             RuleFor(x => x.BlogCategoryId)
             .NotEmpty().WithMessage("Kategori seçimi zorunludur.");
