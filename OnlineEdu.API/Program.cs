@@ -1,33 +1,19 @@
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
-using OnlineEdu.Business.Abstract;
-using OnlineEdu.Business.Concrete;
+using OnlineEdu.API.Extensions;
 using OnlineEdu.Business.Mapping;
 using OnlineEdu.Business.Validators.BlogValidators;
 using OnlineEdu.Business.Validators.CourseValidators;
 using OnlineEdu.Business.Validators.SubscriberValidators;
-using OnlineEdu.DataAccess.Abstract;
 using OnlineEdu.DataAccess.Context;
-using OnlineEdu.DataAccess.Repositories;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddServiceExtensions();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-builder.Services.AddScoped(typeof(IBlogRepository), typeof(BlogRepository));
-builder.Services.AddScoped(typeof(IAboutService), typeof(AboutService));
-builder.Services.AddScoped(typeof(IBannerService), typeof(BannerService));
-builder.Services.AddScoped(typeof(IBlogService), typeof(BlogService));
-builder.Services.AddScoped(typeof(IBlogCategoryService), typeof(BlogCategoryService));
-builder.Services.AddScoped(typeof(IContactService), typeof(ContactService));
-builder.Services.AddScoped(typeof(ICourseCategoryService), typeof(CourseCategoryService));
-builder.Services.AddScoped(typeof(ICourseService), typeof(CourseService));
-builder.Services.AddScoped(typeof(IMessageService), typeof(MessageService));
-builder.Services.AddScoped(typeof(ISocialMediaService), typeof(SocialMediaService));
-builder.Services.AddScoped(typeof(ISubscriberService), typeof(SubscriberService));
-builder.Services.AddScoped(typeof(ITestimonialService), typeof(TestimonialService));
+
 
 builder.Services.AddAutoMapper(typeof(AboutMapping));
 builder.Services.AddAutoMapper(typeof(BannerMapping));

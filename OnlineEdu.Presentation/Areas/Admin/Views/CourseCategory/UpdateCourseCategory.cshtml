@@ -1,0 +1,86 @@
+﻿@model UpdateCourseCategoryDto
+@{
+    ViewData["Title"] = "Kurs Kategorisi Güncelle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm rounded">
+            <div class="card-body">
+                <h3 class="card-title mb-1">Kurs Kategorisi Güncelle</h3>
+                <p class="text-muted mb-0">
+                    Mevcut kurs kategorisi bilgilerini aşağıdaki form üzerinden güncelleyebilirsiniz.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form method="post">
+    <input type="hidden" asp-for="courseCategoryId" />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow-sm rounded">
+                <div class="card-body">
+
+                    <!-- Category Name -->
+                    <div class="mb-3">
+                        <label class="form-label">Kategori Adı</label>
+                        <input asp-for="categoryName"
+                               class="form-control"
+                               placeholder="Kategori adı giriniz" />
+                    </div>
+
+                    <!-- Icon -->
+                    <div class="mb-3">
+                        <label class="form-label">İkon</label>
+                        <input asp-for="icon"
+                               class="form-control"
+                               placeholder="Örnek: mdi mdi-book-open-page-variant" />
+                    </div>
+
+                    <!-- Description -->
+                    <div class="mb-3">
+                        <label class="form-label">Açıklama</label>
+                        <textarea asp-for="description"
+                                  class="form-control"
+                                  rows="4"
+                                  placeholder="Kategori açıklaması giriniz"></textarea>
+                    </div>
+
+                    <!-- IsShown -->
+                    <div class="mb-3">
+                        <label class="form-label d-block">Durum</label>
+
+                        <div class="form-check form-switch">
+                            <input asp-for="isShown"
+                                   class="form-check-input"
+                                   type="checkbox" />
+                            <label class="form-check-label" for="isShown">
+                                Ana sayfada gösterilsin
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Butonlar -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm rounded">
+                <div class="card-body d-flex justify-content-end gap-2">
+                    <a href="/Admin/Banner/Index/" class="btn btn-secondary">
+                        <i class="mdi mdi-arrow-left"></i> Vazgeç
+                    </a>
+                    <button type="submit" class="btn btn-warning text-white">
+                        <i class="mdi mdi-content-save-edit"></i> Güncelle
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

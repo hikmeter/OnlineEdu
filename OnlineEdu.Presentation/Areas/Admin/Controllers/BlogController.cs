@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineEdu.Presentation.Dtos.BlogCategoryDtos;
 using OnlineEdu.Presentation.Dtos.BlogDtos;
 using OnlineEdu.Presentation.Helpers;
+using System.Text.Json;
 
 namespace OnlineEdu.Presentation.Areas.Admin.Controllers
 {
@@ -44,8 +45,19 @@ namespace OnlineEdu.Presentation.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateBlog(CreateBlogDto dto)
         {
-            await _client.PostAsJsonAsync("Blogs", dto);
-            return RedirectToAction(nameof(Index));
+            var response = await _client.PostAsJsonAsync("Blogs", dto);
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            var content = await response.Content.ReadAsStringAsync();
+            var errors = JsonSerializer.Deserialize<List<string>>(content);
+            foreach (var error in errors)
+            {
+                ModelState.AddModelError("", error);
+            }
+            await LoadCategories();
+            return View();
         }
 
         [HttpGet]
@@ -59,8 +71,19 @@ namespace OnlineEdu.Presentation.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateBlog(UpdateBlogDto dto)
         {
-            await _client.PutAsJsonAsync("Blogs", dto);
-            return RedirectToAction(nameof(Index));
+            var response = await _client.PutAsJsonAsync("Blogs", dto);
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            var content = await response.Content.ReadAsStringAsync();
+            var errors = JsonSerializer.Deserialize<List<string>>(content);
+            foreach (var error in errors)
+            {
+                ModelState.AddModelError("", error);
+            }
+            await LoadCategories();
+            return View();
         }
     }
 }

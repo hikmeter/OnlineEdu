@@ -22,6 +22,13 @@ namespace OnlineEdu.API.Controllers
             return Ok(value);
         }
 
+        [HttpGet("ToggleShownStatus/{id}")]
+        public async Task<IActionResult> ToggleShownStatus(int id)
+        {
+            await _categoryService.ToggleShownStatus(id);
+            return Ok("Kurs Kategorisi Gösterim Durumu Başarıyla Güncellendi!");
+        }
+
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {

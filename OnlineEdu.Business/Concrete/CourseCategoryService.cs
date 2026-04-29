@@ -6,7 +6,7 @@ using OnlineEdu.Entity.Entities;
 
 namespace OnlineEdu.Business.Concrete
 {
-    public class CourseCategoryService(IRepository<CourseCategory> _repository, IMapper _mapper) : ICourseCategoryService
+    public class CourseCategoryService(IRepository<CourseCategory> _repository, ICourseCategoryRepository _categoryRepository, IMapper _mapper) : ICourseCategoryService
     {
         public async Task CreateCourseCategory(CreateCourseCategoryDto dto)
         {
@@ -30,6 +30,12 @@ namespace OnlineEdu.Business.Concrete
         {
             var values = await _repository.GetListAsync();
             return _mapper.Map<List<ResultCourseCategoryDto>>(values);
+        }
+
+        public async Task<CourseCategory> ToggleShownStatus(int id)
+        {
+            var value = await _categoryRepository.ToggleShownStatus(id);
+            return value;
         }
 
         public async Task UpdateCourseCategory(UpdateCourseCategoryDto dto)
