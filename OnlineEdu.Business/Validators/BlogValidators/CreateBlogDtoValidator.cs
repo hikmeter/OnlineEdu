@@ -23,11 +23,6 @@ namespace OnlineEdu.Business.Validators.BlogValidators
                 .NotEmpty().WithMessage("Görsel alanı boş bırakılamaz.")
                 .Must(x => Uri.IsWellFormedUriString(x, UriKind.Absolute))
                 .WithMessage("Geçerli bir görsel URL giriniz.");
-
-            RuleFor(x => x.BlogDate)
-                .NotEmpty().WithMessage("Blog tarihi boş bırakılamaz.")
-                .LessThanOrEqualTo(DateTime.Now)
-                .WithMessage("Blog tarihi gelecekte olamaz.");
         }
     }
 }

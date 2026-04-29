@@ -7,7 +7,7 @@ using OnlineEdu.Entity.Entities;
 
 namespace OnlineEdu.Business.Concrete
 {
-    public class BlogService(IRepository<Blog> _repository, IMapper _mapper, IValidator<CreateBlogDto> _createValidator, IValidator<UpdateBlogDto> _updateValidator) : IBlogService
+    public class BlogService(IRepository<Blog> _repository, IBlogRepository _blogRepository, IMapper _mapper, IValidator<CreateBlogDto> _createValidator, IValidator<UpdateBlogDto> _updateValidator) : IBlogService
     {
         public async Task CreateBlog(CreateBlogDto dto)
         {
@@ -24,6 +24,12 @@ namespace OnlineEdu.Business.Concrete
         {
             var value = await _repository.GetByIdAsync(id);
             await _repository.DeleteAsync(value);
+        }
+
+        public async Task<List<GetAllBlogsWithCategoriesDto>> GetAllBlogsWithCategories()
+        {
+            var values = await _blogRepository.GetAllBlogsWithCategories();
+            return _mapper.Map<List<GetAllBlogsWithCategoriesDto>>(values);
         }
 
         public async Task<GetBlogByIdDto> GetBlogById(int id)

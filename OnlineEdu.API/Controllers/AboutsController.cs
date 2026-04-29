@@ -26,7 +26,7 @@ namespace OnlineEdu.API.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             await _aboutService.DeleteAbout(id);
-            return Ok();
+            return Ok("Hakkımızda Alanı Başarıyla Silindi!");
         }
 
         [HttpPost]

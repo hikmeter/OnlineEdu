@@ -8,10 +8,11 @@ namespace OnlineEdu.Business.Mapping
     {
         public BlogMapping()
         {
-            CreateMap<CreateBlogDto, Blog>().ReverseMap();
+            CreateMap<CreateBlogDto, Blog>().ForMember(dest => dest.BlogDate, opt => opt.MapFrom(src => DateTime.Now));
             CreateMap<UpdateBlogDto, Blog>().ReverseMap();
             CreateMap<ResultBlogDto, Blog>().ReverseMap();
             CreateMap<GetBlogByIdDto, Blog>().ReverseMap();
+            CreateMap<Blog, GetAllBlogsWithCategoriesDto>().ForMember(dest => dest.BlogCategoryName, opt => opt.MapFrom(src => src.BlogCategory.Name));
         }
     }
 }

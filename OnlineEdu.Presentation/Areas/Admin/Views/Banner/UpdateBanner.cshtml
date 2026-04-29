@@ -1,0 +1,60 @@
+﻿@model UpdateBannerDto
+@{
+    ViewData["Title"] = "Afiş Güncelle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm rounded">
+            <div class="card-body">
+                <h3 class="card-title mb-1">Afiş Güncelle</h3>
+                <p class="text-muted mb-0">
+                    Mevcut afiş bilgilerini aşağıdaki form üzerinden güncelleyebilirsiniz.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form method="post">
+    <input type="hidden" asp-for="bannerId" />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow-sm rounded">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label">Başlık</label>
+                        <input asp-for="title"
+                               class="form-control"
+                               placeholder="Afiş başlığını giriniz" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Görsel Url</label>
+                        <input asp-for="imageUrl"
+                               class="form-control"
+                               placeholder="Afiş görsel bağlantısını giriniz" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Butonlar -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm rounded">
+                <div class="card-body d-flex justify-content-end gap-2">
+                    <a href="/Admin/Banner/Index/" class="btn btn-secondary">
+                        <i class="mdi mdi-arrow-left"></i> Vazgeç
+                    </a>
+                    <button type="submit" class="btn btn-warning text-white">
+                        <i class="mdi mdi-content-save-edit"></i> Güncelle
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

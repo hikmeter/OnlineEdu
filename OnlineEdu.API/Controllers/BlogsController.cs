@@ -22,7 +22,14 @@ namespace OnlineEdu.API.Controllers
             return Ok(value);
         }
 
-        [HttpDelete]
+        [HttpGet("BlogsWithCategories")]
+        public async Task<IActionResult> GetWithCategories()
+        {
+            var values = await _blogService.GetAllBlogsWithCategories();
+            return Ok(values);
+        }
+
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             await _blogService.DeleteBlog(id);
