@@ -15,6 +15,13 @@ namespace OnlineEdu.API.Controllers
             return Ok(values);
         }
 
+        [HttpGet("GetActiveCourses")]
+        public async Task<IActionResult> GetActiveCourseCategories()
+        {
+            var values = await _categoryService.GetActiveCourseCategories();
+            return Ok(values);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {

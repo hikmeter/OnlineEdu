@@ -12,6 +12,7 @@ namespace OnlineEdu.API.Extensions
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped(typeof(IBlogRepository), typeof(BlogRepository));
             services.AddScoped(typeof(ICourseCategoryRepository), typeof(CourseCategoryRepository));
+            services.AddScoped(typeof(ICourseRepository), typeof(CourseRepository));
             services.AddScoped(typeof(IAboutService), typeof(AboutService));
             services.AddScoped(typeof(IBannerService), typeof(BannerService));
             services.AddScoped(typeof(IBlogService), typeof(BlogService));

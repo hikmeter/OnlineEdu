@@ -1,0 +1,102 @@
+﻿@model CreateSocialMediaDto
+@{
+    ViewData["Title"] = "Sosyal Medya Ekle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm rounded">
+            <div class="card-body">
+                <h3 class="card-title mb-1">Yeni Sosyal Medya Ekle</h3>
+                <p class="text-muted mb-0">
+                    Sosyal medya hesabı bilgilerini aşağıdan ekleyebilirsiniz.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form method="post">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card shadow-sm rounded">
+                <div class="card-body">
+
+                    <!-- TITLE -->
+                    <div class="mb-3">
+                        <label class="form-label">Platform Adı</label>
+                        <input asp-for="title" class="form-control" placeholder="Örn: Facebook" />
+                    </div>
+
+                    <!-- URL -->
+                    <div class="mb-3">
+                        <label class="form-label">Link</label>
+                        <input asp-for="url" class="form-control" placeholder="https://..." />
+                    </div>
+
+                    <!-- ICON -->
+                    <div class="mb-3">
+                        <label class="form-label">İkon (mdi class)</label>
+                        <input asp-for="icon" id="iconInput" class="form-control"
+                               placeholder="mdi mdi-facebook" onkeyup="previewIcon()" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- PREVIEW -->
+        <div class="col-md-4">
+            <div class="card shadow-sm rounded text-center">
+                <div class="card-body">
+
+                    <h5 class="mb-3">Canlı Önizleme</h5>
+
+                    <div style="font-size:50px;">
+                        <i id="iconPreview" class="mdi mdi-help-circle text-muted"></i>
+                    </div>
+
+                    <p class="mt-3 text-muted" id="previewTitle">
+                        Platform adı burada görünecek
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm rounded">
+                <div class="card-body d-flex justify-content-end gap-2">
+
+                    <a href="/Admin/SocialMedia/Index/" class="btn btn-secondary">
+                        <i class="mdi mdi-arrow-left"></i> Vazgeç
+                    </a>
+
+                    <button type="submit" class="btn btn-success">
+                        <i class="mdi mdi-content-save"></i> Kaydet
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    function previewIcon() {
+        var iconClass = document.getElementById("iconInput").value;
+        var preview = document.getElementById("iconPreview");
+
+        preview.className = iconClass + " text-primary";
+    }
+
+    // Title canlı değişsin
+    document.querySelector('[name="title"]').addEventListener("input", function () {
+        document.getElementById("previewTitle").innerText =
+            this.value || "Platform adı burada görünecek";
+    });
+</script>

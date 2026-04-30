@@ -1,0 +1,123 @@
+﻿@model List<ResultSocialMediaDto>
+@{
+    ViewData["Title"] = "Sosyal Medya";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm rounded">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h3 class="card-title mb-1">Sosyal Medya Yönetimi</h3>
+                    <p class="text-muted mb-0">
+                        Sosyal medya hesaplarınızı buradan yönetebilirsiniz.
+                    </p>
+                </div>
+
+                <a href="/Admin/SocialMedia/CreateSocialMedia/" class="btn btn-success">
+                    <i class="mdi mdi-plus-circle"></i> Yeni Ekle
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm rounded">
+            <div class="card-body">
+                <div class="table-responsive">
+
+                    <table class="table table-hover table-bordered align-middle">
+                        <thead class="bg-dark text-white">
+                            <tr>
+                                <th width="60">#</th>
+                                <th>İkon</th>
+                                <th>Platform</th>
+                                <th>Link</th>
+                                <th width="220">İşlemler</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @if (Model != null && Model.Any())
+                            {
+                                int count = 0;
+
+                                foreach (var item in Model)
+                                {
+                                    count++;
+
+                                    <tr>
+                                        <td>@count</td>
+
+                                        <!-- İKON -->
+                                        <td>
+                                            <i class="@item.icon" style="font-size:22px;"></i>
+                                        </td>
+
+                                        <!-- TITLE -->
+                                        <td>
+                                            <strong>@item.title</strong>
+                                        </td>
+
+                                        <!-- URL -->
+                                        <td>
+                                            <a href="@item.url" target="_blank" class="text-decoration-none">
+                                                @item.url
+                                            </a>
+                                        </td>
+
+                                        <!-- ACTIONS -->
+                                        <td>
+                                            <a href="javascript:void(0)"
+                                               onclick="deleteSocial(@item.socialMediaId)"
+                                               class="btn btn-danger btn-sm">
+                                                <i class="mdi mdi-delete"></i> Sil
+                                            </a>
+
+                                            <a href="/Admin/SocialMedia/UpdateSocialMedia/@item.socialMediaId"
+                                               class="btn btn-warning btn-sm text-white">
+                                                <i class="mdi mdi-pencil"></i> Güncelle
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="5" class="text-center text-muted">
+                                        Kayıt bulunamadı.
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function deleteSocial(id) {
+        Swal.fire({
+            title: 'Emin misiniz?',
+            text: "Bu kayıt silinecek.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Evet, Sil',
+            cancelButtonText: 'Vazgeç'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/Admin/SocialMedia/DeleteSocialMedia/' + id;
+            }
+        });
+    }
+</script>
+

@@ -7,7 +7,7 @@ using OnlineEdu.Entity.Entities;
 
 namespace OnlineEdu.Business.Concrete
 {
-    public class CourseService(IRepository<Course> _repository, IMapper _mapper, IValidator<CreateCourseDto> _createValidator, IValidator<UpdateCourseDto> _updateValidator) : ICourseService
+    public class CourseService(IRepository<Course> _repository, ICourseRepository _courseRepository, IMapper _mapper, IValidator<CreateCourseDto> _createValidator, IValidator<UpdateCourseDto> _updateValidator) : ICourseService
     {
         public async Task CreateCourse(CreateCourseDto dto)
         {
@@ -36,6 +36,18 @@ namespace OnlineEdu.Business.Concrete
         {
             var values = await _repository.GetListAsync();
             return _mapper.Map<List<ResultCourseDto>>(values);
+        }
+
+        public async Task<List<GetCoursesWithCategoriesDto>> GetCoursesWithCategories()
+        {
+            var values = await _courseRepository.GetCoursesWithCategoriesAsync();
+            return _mapper.Map<List<GetCoursesWithCategoriesDto>>(values);
+        }
+
+        public async Task<Course> ToggleShownStatus(int id)
+        {
+            var value = await _courseRepository.ToggleShownStatus(id);
+            return value;
         }
 
         public async Task UpdateCourse(UpdateCourseDto dto)

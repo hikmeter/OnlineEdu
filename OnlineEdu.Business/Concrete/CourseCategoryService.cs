@@ -20,6 +20,12 @@ namespace OnlineEdu.Business.Concrete
             await _repository.DeleteAsync(value);
         }
 
+        public async Task<List<ResultCourseCategoryDto>> GetActiveCourseCategories()
+        {
+            var values = await _categoryRepository.GetActiveCourseCategoriesAsync();
+            return _mapper.Map<List<ResultCourseCategoryDto>>(values);
+        }
+
         public async Task<GetCourseCategoryByIdDto> GetCourseCategoryById(int id)
         {
             var value = await _repository.GetByIdAsync(id);

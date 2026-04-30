@@ -6,6 +6,7 @@ namespace OnlineEdu.Business.Abstract
     public interface ICourseCategoryService
     {
         Task<List<ResultCourseCategoryDto>> GetCourseCategoryList();
+        Task<List<ResultCourseCategoryDto>> GetActiveCourseCategories();
         Task<GetCourseCategoryByIdDto> GetCourseCategoryById(int id);
         Task<CourseCategory> ToggleShownStatus(int id);
         Task CreateCourseCategory(CreateCourseCategoryDto dto);

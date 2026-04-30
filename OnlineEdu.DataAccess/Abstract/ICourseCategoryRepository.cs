@@ -5,5 +5,6 @@ namespace OnlineEdu.DataAccess.Abstract
     public interface ICourseCategoryRepository
     {
         Task<CourseCategory> ToggleShownStatus(int id);
+        Task<List<CourseCategory>> GetActiveCourseCategoriesAsync();
     }
 }

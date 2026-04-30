@@ -15,6 +15,13 @@ namespace OnlineEdu.API.Controllers
             return Ok(values);
         }
 
+        [HttpGet("CoursesWithCategories")]
+        public async Task<IActionResult> GetCoursesWithCategories()
+        {
+            var values = await _courseService.GetCoursesWithCategories();
+            return Ok(values);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -22,11 +29,18 @@ namespace OnlineEdu.API.Controllers
             return Ok(value);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             await _courseService.DeleteCourse(id);
             return Ok("Kurs Başarıyla Silindi!");
+        }
+
+        [HttpGet("ToggleShownStatus/{id}")]
+        public async Task<IActionResult> ToggleShownStatus(int id)
+        {
+            var values = await _courseService.ToggleShownStatus(id);
+            return Ok("Kurs Gösterim Durumu Başarıyla Güncellendi!");
         }
 
         [HttpPost]
