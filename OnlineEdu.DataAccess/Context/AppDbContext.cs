@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using OnlineEdu.Entity.Entities;
 
 namespace OnlineEdu.DataAccess.Context
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<AppUser, AppRole, int>
     {
         public AppDbContext(DbContextOptions options) : base(options)
         {
@@ -20,5 +21,6 @@ namespace OnlineEdu.DataAccess.Context
         public DbSet<SocialMedia> SocialMedias { get; set; }
         public DbSet<Subscriber> Subscribers { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
+        public DbSet<CourseEnrollment> CourseEnrollments { get; set; }
     }
 }

@@ -6,6 +6,7 @@ namespace OnlineEdu.Business.Abstract
     public interface ICourseService
     {
         Task<List<ResultCourseDto>> GetCourseList();
+        Task<List<ResultCourseDto>> Get3ActivePopularCourses();
         Task<List<GetCoursesWithCategoriesDto>> GetCoursesWithCategories();
         Task<GetCourseByIdDto> GetCourseById(int id);
         Task<Course> ToggleShownStatus(int id);

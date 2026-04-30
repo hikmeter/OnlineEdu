@@ -22,6 +22,13 @@ namespace OnlineEdu.API.Controllers
             return Ok(values);
         }
 
+        [HttpGet("3ActivePopularCourses")]
+        public async Task<IActionResult> Get3ActivePopularCourses()
+        {
+            var values = await _courseService.Get3ActivePopularCourses();
+            return Ok(values);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {

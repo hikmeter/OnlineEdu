@@ -7,6 +7,11 @@ namespace OnlineEdu.DataAccess.Repositories
 {
     public class CourseRepository(AppDbContext _context) : ICourseRepository
     {
+        public async Task<List<Course>> Get3ActivePopularCoursesAsync()
+        {
+            return await _context.Courses.Where(x => x.IsShown == true).Take(3).ToListAsync();
+        }
+
         public async Task<List<Course>> GetCoursesWithCategoriesAsync()
         {
             var values = await _context.Courses.Include(x => x.CourseCategory).ToListAsync();

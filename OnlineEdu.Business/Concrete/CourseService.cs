@@ -26,6 +26,12 @@ namespace OnlineEdu.Business.Concrete
             await _repository.DeleteAsync(value);
         }
 
+        public async Task<List<ResultCourseDto>> Get3ActivePopularCourses()
+        {
+            var values = await _courseRepository.Get3ActivePopularCoursesAsync();
+            return _mapper.Map<List<ResultCourseDto>>(values);
+        }
+
         public async Task<GetCourseByIdDto> GetCourseById(int id)
         {
             var value = await _repository.GetByIdAsync(id);

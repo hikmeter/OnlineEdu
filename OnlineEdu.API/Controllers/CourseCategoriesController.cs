@@ -36,7 +36,7 @@ namespace OnlineEdu.API.Controllers
             return Ok("Kurs Kategorisi Gösterim Durumu Başarıyla Güncellendi!");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             await _categoryService.DeleteCourseCategory(id);
