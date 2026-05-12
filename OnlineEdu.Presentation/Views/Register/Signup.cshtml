@@ -1,0 +1,115 @@
+﻿@model UserRegisterDto
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/login-form-07/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="~/login-form-07/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/login-form-07/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/login-form-07/css/style.css">
+    <title>Online Edu | Kayıt Ol</title>
+</head>
+<body>
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="~/login-form-07/images/undraw_remotely_2j6y.svg"
+                         alt="Image"
+                         class="img-fluid">
+                </div>
+                <div class="col-md-6 contents">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="mb-4">
+                                <h3>Kayıt Ol</h3>
+                                <p class="mb-4">
+                                    Dakikalar içinde ücretsiz hesabını oluştur ve eğitim içeriklerine erişmeye başla.
+                                </p>
+                            </div>
+                            <form method="post">
+                                <div class="form-group first">
+                                    <label asp-for="Name">Ad</label>
+                                    <input asp-for="Name"
+                                           type="text"
+                                           class="form-control">
+                                    <span asp-validation-for="Name"
+                                          class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Surname">Soyad</label>
+                                    <input asp-for="Surname"
+                                           type="text"
+                                           class="form-control">
+                                    <span asp-validation-for="Surname"
+                                          class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Username">Kullanıcı Adı</label>
+                                    <input asp-for="Username"
+                                           type="text"
+                                           class="form-control">
+                                    <span asp-validation-for="Username"
+                                          class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Email">E-Posta</label>
+                                    <input asp-for="Email"
+                                           type="email"
+                                           class="form-control">
+                                    <span asp-validation-for="Email"
+                                          class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Password">Şifre</label>
+
+                                    <input asp-for="Password"
+                                           type="password"
+                                           class="form-control">
+
+                                    <span asp-validation-for="Password"
+                                          class="text-danger"></span>
+                                </div>
+                                <div class="form-group last mb-4">
+                                    <label asp-for="ConfirmPassword">
+                                        Şifre Tekrar
+                                    </label>
+                                    <input asp-for="ConfirmPassword"
+                                           type="password"
+                                           class="form-control">
+                                    <span asp-validation-for="ConfirmPassword"
+                                          class="text-danger"></span>
+                                </div>
+                                <div class="text-danger mb-3">
+                                    @Html.ValidationSummary()
+                                </div>
+                                <input type="submit"
+                                       value="Kayıt Ol"
+                                       class="btn btn-block btn-primary">
+                                <div class="text-center mt-3">
+                                    <span>
+                                        Zaten hesabın var mı?
+                                    </span>
+                                    <a href="/Login/Index/">
+                                        Giriş Yap
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/login-form-07/js/jquery-3.3.1.min.js"></script>
+    <script src="~/login-form-07/js/popper.min.js"></script>
+    <script src="~/login-form-07/js/bootstrap.min.js"></script>
+    <script src="~/login-form-07/js/main.js"></script>
+</body>
+</html>

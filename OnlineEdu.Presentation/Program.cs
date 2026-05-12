@@ -1,15 +1,20 @@
 using Microsoft.EntityFrameworkCore;
 using OnlineEdu.DataAccess.Context;
 using OnlineEdu.Entity.Entities;
+using OnlineEdu.Presentation.Mapping;
+using OnlineEdu.Presentation.Services.RoleServices;
+using OnlineEdu.Presentation.Services.UserServices;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IRoleService, RoleService>();
+builder.Services.AddAutoMapper(typeof(GeneralMapping));
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"));
 });
 
-builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<AppDbContext>();
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<AppDbContext>().AddErrorDescriber<CustomErrorDescriber>();
 // Add services to the container.
 builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
