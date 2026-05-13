@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using OnlineEdu.Entity.Entities;
 using OnlineEdu.Presentation.Dtos.UserDtos;
 
@@ -6,15 +7,29 @@ namespace OnlineEdu.Presentation.Services.UserServices
 {
     public class UserService(UserManager<AppUser> _userManager, SignInManager<AppUser> _signInManager, RoleManager<AppRole> _roleManager) : IUserService
     {
-        public Task<IdentityResult> AssignRoleAsync(AssignRoleDto dto)
+        public async Task<IdentityResult> AssignRoleAsync(int userId, List<AssignRoleDto> roleList)
         {
-            throw new NotImplementedException();
+            var user = await GetUserByIdAsync(userId);
+            var userRoles = await _userManager.GetRolesAsync(user);
+            foreach (var role in roleList)
+            {
+                if (role.IsRoleExists)
+                {
+                    await _userManager.AddToRoleAsync(user, role.RoleName);
+                }
+                else
+                {
+                    await _userManager.RemoveFromRoleAsync(user, role.RoleName);
+                }
+            }
+            return IdentityResult.Success;
         }
 
-        public Task<IdentityResult> CreateRoleAsync(UserRoleDto dto)
-        {
-            throw new NotImplementedException();
-        }
+
+        //public Task<IdentityResult> CreateRoleAsync(UserRoleDto dto)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public async Task<IdentityResult> CreateUserAsync(UserRegisterDto dto)
         {
@@ -35,7 +50,36 @@ namespace OnlineEdu.Presentation.Services.UserServices
                 UserName = dto.Username
             };
             var result = await _userManager.CreateAsync(user, dto.Password);
+            await _userManager.AddToRoleAsync(user, "Student");
             return result;
+        }
+
+        public async Task<List<AppUser>> GetAllUsersAsync()
+        {
+            return await _userManager.Users.ToListAsync();
+        }
+
+        public async Task<List<AssignRoleDto>> GetAssignRoleListAsync(int userId)
+        {
+            var user = await GetUserByIdAsync(userId);
+            var roles = await _roleManager.Roles.ToListAsync();
+            var userRoles = await _userManager.GetRolesAsync(user);
+            List<AssignRoleDto> result = new List<AssignRoleDto>();
+            foreach (var role in roles)
+            {
+                result.Add(new AssignRoleDto
+                {
+                    RoleId = role.Id,
+                    RoleName = role.Name,
+                    IsRoleExists = userRoles.Contains(role.Name)
+                });
+            }
+            return result;
+        }
+
+        public async Task<AppUser> GetUserByIdAsync(int id)
+        {
+            return await _userManager.Users.FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<LoginResultDto> LoginAsync(UserLoginDto dto)

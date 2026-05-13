@@ -1,0 +1,71 @@
+﻿@using OnlineEdu.Entity.Entities
+@model List<AppUser>
+@{
+    ViewData["Title"] = "Roller";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm rounded">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h3 class="card-title mb-1">Rol Yönetimi</h3>
+                    <p class="text-muted mb-0">
+                        Kullanıcılarınızın rollerini buradan yönetebilirsiniz.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm rounded">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered align-middle">
+                        <thead class="bg-dark text-white">
+                            <tr>
+                                <th width="80">#</th>
+                                <th>Adı Soyadı</th>
+                                <th>Kullanıcı Adı</th>
+                                <th width="220">İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model.Any())
+                            {
+                                int count = 0;
+                                foreach (var item in Model)
+                                {
+                                    count++;
+                                    <tr>
+                                        <td>@count</td>
+                                        <td>@item.Name @item.Surname</td>
+                                        <td>@item.UserName</td>
+                                        <td>
+                                            <a href="/Admin/RoleAssign/AssignRole/@item.Id"
+                                               class="btn btn-warning btn-sm text-white">
+                                                <i class="mdi mdi-pencil"></i> Rol Ata
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="3" class="text-center text-muted">
+                                        Kayıt bulunamadı.
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

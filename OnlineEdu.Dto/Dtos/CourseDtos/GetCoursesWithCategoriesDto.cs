@@ -9,5 +9,6 @@
         public string CourseCategoryName { get; set; }
         public decimal Price { get; set; }
         public bool IsShown { get; set; }
+        public int AppUserId { get; set; }
     }
 }

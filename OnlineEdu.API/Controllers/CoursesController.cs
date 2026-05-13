@@ -29,6 +29,13 @@ namespace OnlineEdu.API.Controllers
             return Ok(values);
         }
 
+        [HttpGet("CoursesByTeacherId/{id}")]
+        public async Task<IActionResult> GetCoursesByTeacherId(int id)
+        {
+            var values = await _courseService.GetCoursesByTeacherId(id);
+            return Ok(values);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {

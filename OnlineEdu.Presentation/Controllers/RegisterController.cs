@@ -23,7 +23,7 @@ namespace OnlineEdu.Presentation.Controllers
                 }
                 return View();
             }
-            return RedirectToAction("Index", "Login");
+            return RedirectToAction("SignIn", "Login");
         }
     }
 }

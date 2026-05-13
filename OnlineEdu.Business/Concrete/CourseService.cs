@@ -44,6 +44,12 @@ namespace OnlineEdu.Business.Concrete
             return _mapper.Map<List<ResultCourseDto>>(values);
         }
 
+        public async Task<List<ResultCourseDto>> GetCoursesByTeacherId(int id)
+        {
+            var values = await _courseRepository.GetCoursesByTeacherIdAsync(id);
+            return _mapper.Map<List<ResultCourseDto>>(values);
+        }
+
         public async Task<List<GetCoursesWithCategoriesDto>> GetCoursesWithCategories()
         {
             var values = await _courseRepository.GetCoursesWithCategoriesAsync();

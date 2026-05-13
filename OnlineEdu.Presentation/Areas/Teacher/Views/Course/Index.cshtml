@@ -1,7 +1,7 @@
 ﻿@model List<ResultCourseDto>
 @{
-    ViewData["Title"] = "Kurslar";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Kurslarım";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
 }
 
 <div class="row">
@@ -11,12 +11,12 @@
                 <div>
                     <h3 class="card-title mb-1">Kurs Yönetimi</h3>
                     <p class="text-muted mb-0">
-                        Kursları buradan yönetebilirsiniz. Yeni kurs ekleyebilir,
-                        mevcut kursları güncelleyebilir veya silebilirsiniz.
+                        Kurslarınızı buradan yönetebilirsiniz. Yeni kurs ekleyebilir,
+                        mevcut kurslarınızı güncelleyebilir veya silebilirsiniz.
                     </p>
                 </div>
 
-                <a href="/Admin/Course/CreateCourse/" class="btn btn-success">
+                <a href="/Teacher/Course/CreateCourse/" class="btn btn-success">
                     <i class="mdi mdi-plus-circle"></i> Yeni Ekle
                 </a>
             </div>
@@ -37,7 +37,6 @@
                                 <th>Kurs Adı</th>
                                 <th>Kategori</th>
                                 <th>Fiyat</th>
-                                <th>Durum</th>
                                 <th width="260">İşlemler</th>
                             </tr>
                         </thead>
@@ -46,63 +45,39 @@
                             @if (Model != null && Model.Any())
                             {
                                 int count = 0;
-
                                 foreach (var item in Model)
                                 {
                                     count++;
-
                                     <tr>
                                         <td>@count</td>
-
                                         <td>
                                             <img src="@item.imageUrl"
                                                  style="width:75px;height:55px;object-fit:cover;border-radius:8px;" />
                                         </td>
-
                                         <td>
                                             @(item.courseName.Length > 40
                                                 ? item.courseName.Substring(0, 40) + "..."
                                                 : item.courseName)
                                         </td>
-
                                         <td>
                                             <span class="badge bg-info text-white px-3 py-2">
                                                 @item.courseCategoryName
                                             </span>
                                         </td>
-
                                         <td>
                                             <span class="badge bg-success px-3 py-2">
                                                 @item.price ₺
                                             </span>
                                         </td>
-
-                                        <td>
-                                            @if (item.isShown)
-                                            {
-                                                <span class="badge bg-success">Aktif</span>
-                                            }
-                                            else
-                                            {
-                                                <span class="badge bg-secondary">Pasif</span>
-                                            }
-                                        </td>
-
                                         <td>
                                             <a href="javascript:void(0)"
                                                onclick="deleteCourse(@item.courseId)"
                                                class="btn btn-danger btn-sm">
                                                 <i class="mdi mdi-delete"></i> Sil
                                             </a>
-
-                                            <a href="/Admin/Course/UpdateCourse/@item.courseId"
+                                            <a href="/Teacher/Course/UpdateCourse/@item.courseId"
                                                class="btn btn-warning btn-sm text-white">
                                                 <i class="mdi mdi-pencil"></i> Güncelle
-                                            </a>
-
-                                            <a href="/Admin/Course/ToggleShownStatus/@item.courseId"
-                                               class="btn btn-info btn-sm">
-                                                <i class="mdi mdi-eye"></i> Durum Değiştir
                                             </a>
                                         </td>
                                     </tr>
@@ -137,7 +112,7 @@
             cancelButtonText: 'Vazgeç'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = '/Admin/Course/DeleteCourse/' + id;
+                window.location.href = '/Teacher/Course/DeleteCourse/' + id;
             }
         });
     }

@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OnlineEdu.Presentation.Dtos.RoleDtos;
 using OnlineEdu.Presentation.Services.RoleServices;
 
 namespace OnlineEdu.Presentation.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
-    [Route("[area]/[controller]/[action]/{id?}")]
     public class RoleController(IRoleService _service) : Controller
     {
         public async Task<IActionResult> Index()
