@@ -26,6 +26,7 @@ builder.Services.AddAutoMapper(typeof(MessageMapping));
 builder.Services.AddAutoMapper(typeof(SocialMediaMapping));
 builder.Services.AddAutoMapper(typeof(SubscriberMapping));
 builder.Services.AddAutoMapper(typeof(TestimonialMapping));
+builder.Services.AddAutoMapper(typeof(TeacherSocialMapping));
 
 builder.Services.AddValidatorsFromAssemblyContaining<CreateBlogDtoValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<UpdateBlogDtoValidator>();

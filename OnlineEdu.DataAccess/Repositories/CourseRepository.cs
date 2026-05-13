@@ -14,7 +14,7 @@ namespace OnlineEdu.DataAccess.Repositories
 
         public async Task<List<Course>> GetCoursesByTeacherIdAsync(int id)
         {
-            return await _context.Courses.Where(x => x.AppUserId == id).ToListAsync();
+            return await _context.Courses.Include(x => x.CourseCategory).Where(x => x.AppUserId == id).ToListAsync();
         }
 
         public async Task<List<Course>> GetCoursesWithCategoriesAsync()

@@ -1,0 +1,74 @@
+﻿@model CreateCourseDto
+@{
+    ViewData["Title"] = "Kurs Oluştur";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm rounded">
+            <div class="card-body">
+                <h3 class="card-title mb-1">Yeni Kurs Oluştur</h3>
+                <p class="text-muted mb-0">
+                    Kurs bilgilerini aşağıdaki form üzerinden ekleyebilirsiniz.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card shadow-sm rounded">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label">Kurs Adı</label>
+                        <input asp-for="courseName" class="form-control" placeholder="Kurs adı giriniz" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Görsel URL</label>
+                        <input asp-for="imageUrl" class="form-control" placeholder="Görsel linki" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Fiyat</label>
+                        <input asp-for="price" type="number" class="form-control" placeholder="₺" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- SAĞ TARAF -->
+        <div class="col-md-4">
+            <div class="card shadow-sm rounded">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label">Kategori</label>
+                        <select asp-for="courseCategoryId"
+                                asp-items="ViewBag.courseCategories"
+                                class="form-control">
+                            <option value="">Kategori Seçiniz</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm rounded">
+                <div class="card-body d-flex justify-content-end gap-2">
+                    <a href="/Teacher/Course/Index/" class="btn btn-secondary">
+                        <i class="mdi mdi-arrow-left"></i> Vazgeç
+                    </a>
+                    <button type="submit" class="btn btn-success">
+                        <i class="mdi mdi-content-save"></i> Kaydet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

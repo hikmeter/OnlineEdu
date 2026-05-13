@@ -1,0 +1,72 @@
+﻿@model CreateBlogDto
+@{
+    ViewData["Title"] = "Blog Ekle";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm rounded">
+            <div class="card-body">
+                <h3 class="card-title mb-1">Yeni Blog Oluştur</h3>
+                <p class="text-muted mb-0">
+                    Blog içeriğini aşağıdaki form üzerinden ekleyebilirsiniz.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card shadow-sm rounded">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label">Başlık</label>
+                        <input asp-for="title" class="form-control" placeholder="Blog başlığı" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">İçerik</label>
+                        <textarea asp-for="content" rows="8" class="form-control" placeholder="Blog içeriği"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Görsel URL</label>
+                        <input asp-for="imageUrl" class="form-control" placeholder="Görsel linki" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm rounded">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label">Kategori</label>
+                        <select asp-for="blogCategoryId"
+                                asp-items="ViewBag.blogCategories"
+                                class="form-control">
+                            <option value="">Kategori Seçiniz</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm rounded">
+                <div class="card-body d-flex justify-content-end gap-2">
+                    <a href="/Teacher/Blog/Index/" class="btn btn-secondary">
+                        <i class="mdi mdi-arrow-left"></i> Vazgeç
+                    </a>
+                    <button type="submit" class="btn btn-success">
+                        <i class="mdi mdi-content-save"></i> Kaydet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

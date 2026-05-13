@@ -9,5 +9,7 @@
         public string ImageUrl { get; set; }
         public DateTime BlogDate { get; set; }
         public BlogCategory BlogCategory { get; set; }
+        public int? WriterId { get; set; }
+        public AppUser Writer { get; set; }
     }
 }

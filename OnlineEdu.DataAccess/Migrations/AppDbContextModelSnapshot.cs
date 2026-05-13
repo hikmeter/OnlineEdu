@@ -17,7 +17,7 @@ namespace OnlineEdu.DataAccess.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.23")
+                .HasAnnotation("ProductVersion", "8.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -322,9 +322,14 @@ namespace OnlineEdu.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("WriterId")
+                        .HasColumnType("int");
+
                     b.HasKey("BlogId");
 
                     b.HasIndex("BlogCategoryId");
+
+                    b.HasIndex("WriterId");
 
                     b.ToTable("Blogs");
                 });
@@ -537,6 +542,33 @@ namespace OnlineEdu.DataAccess.Migrations
                     b.ToTable("Subscribers");
                 });
 
+            modelBuilder.Entity("OnlineEdu.Entity.Entities.TeacherSocial", b =>
+                {
+                    b.Property<int>("TeacherSocialId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TeacherSocialId"));
+
+                    b.Property<int>("SocialMediaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TeacherId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TeacherSocialId");
+
+                    b.HasIndex("SocialMediaId");
+
+                    b.HasIndex("TeacherId");
+
+                    b.ToTable("TeacherSocials");
+                });
+
             modelBuilder.Entity("OnlineEdu.Entity.Entities.Testimonial", b =>
                 {
                     b.Property<int>("TestimonialId")
@@ -628,7 +660,13 @@ namespace OnlineEdu.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("OnlineEdu.Entity.Entities.AppUser", "Writer")
+                        .WithMany("Blogs")
+                        .HasForeignKey("WriterId");
+
                     b.Navigation("BlogCategory");
+
+                    b.Navigation("Writer");
                 });
 
             modelBuilder.Entity("OnlineEdu.Entity.Entities.Course", b =>
@@ -667,8 +705,29 @@ namespace OnlineEdu.DataAccess.Migrations
                     b.Navigation("Course");
                 });
 
+            modelBuilder.Entity("OnlineEdu.Entity.Entities.TeacherSocial", b =>
+                {
+                    b.HasOne("OnlineEdu.Entity.Entities.SocialMedia", "SocialMedia")
+                        .WithMany("TeacherSocials")
+                        .HasForeignKey("SocialMediaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineEdu.Entity.Entities.AppUser", "Teacher")
+                        .WithMany()
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SocialMedia");
+
+                    b.Navigation("Teacher");
+                });
+
             modelBuilder.Entity("OnlineEdu.Entity.Entities.AppUser", b =>
                 {
+                    b.Navigation("Blogs");
+
                     b.Navigation("CourseEnrollments");
 
                     b.Navigation("Courses");
@@ -687,6 +746,11 @@ namespace OnlineEdu.DataAccess.Migrations
             modelBuilder.Entity("OnlineEdu.Entity.Entities.CourseCategory", b =>
                 {
                     b.Navigation("Courses");
+                });
+
+            modelBuilder.Entity("OnlineEdu.Entity.Entities.SocialMedia", b =>
+                {
+                    b.Navigation("TeacherSocials");
                 });
 #pragma warning restore 612, 618
         }

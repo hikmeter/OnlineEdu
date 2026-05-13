@@ -8,6 +8,6 @@
         public int courseCategoryId { get; set; }
         public decimal price { get; set; }
         public bool isShown { get; set; }
-        public bool AppUserId { get; set; }
+        public int AppUserId { get; set; }
     }
 }

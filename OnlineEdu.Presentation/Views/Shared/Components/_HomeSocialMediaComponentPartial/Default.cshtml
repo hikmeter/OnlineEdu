@@ -1,0 +1,10 @@
+﻿@using OnlineEdu.Presentation.Dtos.SocialMediaDtos
+@model List<ResultSocialMediaDto>
+<div class="header-left-social">
+    <ul class="header-social">
+        @foreach(var item in Model)
+        {
+            <li><a href="@item.url"><i class="@item.icon"></i></a></li>
+        }
+    </ul>
+</div>

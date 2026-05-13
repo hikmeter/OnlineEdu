@@ -23,7 +23,7 @@ namespace OnlineEdu.Presentation.Controllers
             return result.Role switch
             {
                 "Admin" => RedirectToAction("Index", "About", new { area = "Admin" }),
-                "Teacher" => RedirectToAction("Index", "Teacher"),
+                "Teacher" => RedirectToAction("Index", "Course", new { area = "Teacher" }),
                 _ => RedirectToAction("Index", "Student")
             };
         }

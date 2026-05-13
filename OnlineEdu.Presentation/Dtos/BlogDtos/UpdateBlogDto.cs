@@ -8,5 +8,6 @@
         public string content { get; set; }
         public string imageUrl { get; set; }
         public DateTime blogDate { get; set; }
+        public int writerId { get; set; }
     }
 }

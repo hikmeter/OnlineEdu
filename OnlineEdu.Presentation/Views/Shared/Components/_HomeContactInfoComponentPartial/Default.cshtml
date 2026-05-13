@@ -1,0 +1,11 @@
+﻿@using OnlineEdu.Presentation.Dtos.ContactDtos
+@model List<ResultContactDto>
+<div class="header-info-left">
+	<ul>
+		@foreach(var item in Model.Take(1))
+		{
+		<li>@item.email</li>
+		<li>@item.phone</li>
+		}
+	</ul>
+</div>

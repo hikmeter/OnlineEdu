@@ -8,7 +8,7 @@ namespace OnlineEdu.Business.Mapping
     {
         public CourseMapping()
         {
-            CreateMap<CreateCourseDto, Course>().ReverseMap();
+            CreateMap<CreateCourseDto, Course>().ForMember(dest => dest.IsShown, opt => opt.MapFrom(src => false));
             CreateMap<UpdateCourseDto, Course>().ReverseMap();
             CreateMap<ResultCourseDto, Course>().ReverseMap();
             CreateMap<GetCourseByIdDto, Course>().ReverseMap();

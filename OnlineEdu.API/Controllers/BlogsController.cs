@@ -22,10 +22,17 @@ namespace OnlineEdu.API.Controllers
             return Ok(value);
         }
 
-        [HttpGet("BlogsWithCategories")]
-        public async Task<IActionResult> GetWithCategories()
+        [HttpGet("BlogsWithCategoriesAndWriters")]
+        public async Task<IActionResult> GetWithCategoriesAndWriters()
         {
-            var values = await _blogService.GetAllBlogsWithCategories();
+            var values = await _blogService.GetAllBlogsWithCategoriesAndWriters();
+            return Ok(values);
+        }
+
+        [HttpGet("BlogsByWriterId/{id}")]
+        public async Task<IActionResult> GetBlogsByWriterId(int id)
+        {
+            var values = await _blogService.GetBlogsByWriterId(id);
             return Ok(values);
         }
 

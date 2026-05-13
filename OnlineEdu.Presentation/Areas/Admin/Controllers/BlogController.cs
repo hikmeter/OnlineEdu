@@ -26,7 +26,7 @@ namespace OnlineEdu.Presentation.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var values = await _client.GetFromJsonAsync<List<ResultBlogDto>>("Blogs/BlogsWithCategories");
+            var values = await _client.GetFromJsonAsync<List<ResultBlogDto>>("Blogs/BlogsWithCategoriesAndWriters");
             return View(values);
         }
 
