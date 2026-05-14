@@ -1,15 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OnlineEdu.Presentation.Dtos.TeacherSocialDtos;
-using OnlineEdu.Presentation.Helpers;
+using OnlineEdu.Presentation.Services.UserServices;
 
 namespace OnlineEdu.Presentation.ViewComponents.HomeComponents
 {
-    public class _HomeTeachersComponentPartial : ViewComponent
+    public class _HomeTeachersComponentPartial(IUserService _service) : ViewComponent
     {
-        private readonly HttpClient _client = HttpClientInstance.CreateClient();
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var values = await _client.GetFromJsonAsync<List<ResultTeacherSocialDto>>("TeacherSocials");
+            var values = await _service.GetAllTeachers();
             return View(values);
         }
     }

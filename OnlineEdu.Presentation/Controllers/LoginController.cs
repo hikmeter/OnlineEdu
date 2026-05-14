@@ -24,7 +24,7 @@ namespace OnlineEdu.Presentation.Controllers
             {
                 "Admin" => RedirectToAction("Index", "About", new { area = "Admin" }),
                 "Teacher" => RedirectToAction("Index", "Course", new { area = "Teacher" }),
-                _ => RedirectToAction("Index", "Student")
+                _ => RedirectToAction("CourseEnrollment", "Student")
             };
         }
     }

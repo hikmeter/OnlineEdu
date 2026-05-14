@@ -163,7 +163,7 @@ namespace OnlineEdu.DataAccess.Migrations
 
                     b.HasKey("AboutId");
 
-                    b.ToTable("Abouts");
+                    b.ToTable("Abouts", (string)null);
                 });
 
             modelBuilder.Entity("OnlineEdu.Entity.Entities.AppRole", b =>
@@ -293,7 +293,7 @@ namespace OnlineEdu.DataAccess.Migrations
 
                     b.HasKey("BannerId");
 
-                    b.ToTable("Banners");
+                    b.ToTable("Banners", (string)null);
                 });
 
             modelBuilder.Entity("OnlineEdu.Entity.Entities.Blog", b =>
@@ -331,7 +331,7 @@ namespace OnlineEdu.DataAccess.Migrations
 
                     b.HasIndex("WriterId");
 
-                    b.ToTable("Blogs");
+                    b.ToTable("Blogs", (string)null);
                 });
 
             modelBuilder.Entity("OnlineEdu.Entity.Entities.BlogCategory", b =>
@@ -348,7 +348,7 @@ namespace OnlineEdu.DataAccess.Migrations
 
                     b.HasKey("BlogCategoryId");
 
-                    b.ToTable("BlogCategories");
+                    b.ToTable("BlogCategories", (string)null);
                 });
 
             modelBuilder.Entity("OnlineEdu.Entity.Entities.Contact", b =>
@@ -377,7 +377,7 @@ namespace OnlineEdu.DataAccess.Migrations
 
                     b.HasKey("ContactId");
 
-                    b.ToTable("Contacts");
+                    b.ToTable("Contacts", (string)null);
                 });
 
             modelBuilder.Entity("OnlineEdu.Entity.Entities.Course", b =>
@@ -414,7 +414,7 @@ namespace OnlineEdu.DataAccess.Migrations
 
                     b.HasIndex("CourseCategoryId");
 
-                    b.ToTable("Courses");
+                    b.ToTable("Courses", (string)null);
                 });
 
             modelBuilder.Entity("OnlineEdu.Entity.Entities.CourseCategory", b =>
@@ -442,7 +442,7 @@ namespace OnlineEdu.DataAccess.Migrations
 
                     b.HasKey("CourseCategoryId");
 
-                    b.ToTable("CourseCategories");
+                    b.ToTable("CourseCategories", (string)null);
                 });
 
             modelBuilder.Entity("OnlineEdu.Entity.Entities.CourseEnrollment", b =>
@@ -465,7 +465,7 @@ namespace OnlineEdu.DataAccess.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("CourseEnrollments");
+                    b.ToTable("CourseEnrollments", (string)null);
                 });
 
             modelBuilder.Entity("OnlineEdu.Entity.Entities.Message", b =>
@@ -494,7 +494,7 @@ namespace OnlineEdu.DataAccess.Migrations
 
                     b.HasKey("MessageId");
 
-                    b.ToTable("Messages");
+                    b.ToTable("Messages", (string)null);
                 });
 
             modelBuilder.Entity("OnlineEdu.Entity.Entities.SocialMedia", b =>
@@ -519,7 +519,7 @@ namespace OnlineEdu.DataAccess.Migrations
 
                     b.HasKey("SocialMediaId");
 
-                    b.ToTable("SocialMedias");
+                    b.ToTable("SocialMedias", (string)null);
                 });
 
             modelBuilder.Entity("OnlineEdu.Entity.Entities.Subscriber", b =>
@@ -539,7 +539,7 @@ namespace OnlineEdu.DataAccess.Migrations
 
                     b.HasKey("SubscriberId");
 
-                    b.ToTable("Subscribers");
+                    b.ToTable("Subscribers", (string)null);
                 });
 
             modelBuilder.Entity("OnlineEdu.Entity.Entities.TeacherSocial", b =>
@@ -566,7 +566,7 @@ namespace OnlineEdu.DataAccess.Migrations
 
                     b.HasIndex("TeacherId");
 
-                    b.ToTable("TeacherSocials");
+                    b.ToTable("TeacherSocials", (string)null);
                 });
 
             modelBuilder.Entity("OnlineEdu.Entity.Entities.Testimonial", b =>
@@ -598,7 +598,7 @@ namespace OnlineEdu.DataAccess.Migrations
 
                     b.HasKey("TestimonialId");
 
-                    b.ToTable("Testimonials");
+                    b.ToTable("Testimonials", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

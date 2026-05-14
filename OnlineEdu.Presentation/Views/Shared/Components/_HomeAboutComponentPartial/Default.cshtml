@@ -1,0 +1,36 @@
+﻿@model List<ResultAboutDto>
+<div class="about-area section-padding2">
+	<div class="container">
+		<div class="row">
+			@foreach (var item in Model)
+			{
+				<div class="col-lg-6 col-md-12">
+					<div class="about-caption mb-50">
+						<div class="section-tittle mb-35">
+							<span>Şirketimiz Hakkında Daha Fazlası</span>
+							<h2>Daha fazlasını öğrenmek ister misiniz?</h2>
+						</div>
+						<p>@item.description</p>
+						<ul>
+							<li><span class="flaticon-business"></span> @item.item1</li>
+							<li><span class="flaticon-communications-1"></span> @item.item2</li>
+							<li><span class="flaticon-graduated"></span> @item.item3</li>
+							<li><span class="flaticon-tools-and-utensils"></span> @item.item4</li>
+						</ul>
+						<a href="about.html" class="btn">Dahası İçin</a>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-12">
+					<div class="about-img ">
+						<div class="about-font-img d-none d-lg-block">
+							<img src="@item.imageUrl1" alt="About Us">
+						</div>
+						<div class="about-back-img ">
+							<img src="@item.imageUrl2" alt="About Us">
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+</div>

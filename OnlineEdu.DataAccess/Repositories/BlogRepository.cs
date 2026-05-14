@@ -17,5 +17,10 @@ namespace OnlineEdu.DataAccess.Repositories
         {
             return await _context.Blogs.Include(x => x.BlogCategory).Include(y => y.Writer).Where(z => z.WriterId == id).ToListAsync();
         }
+
+        public async Task<List<Blog>> GetLast4BlogsWithCategoriesAndWritersAsync()
+        {
+            return await _context.Blogs.Include(x => x.BlogCategory).Include(y => y.Writer).OrderByDescending(z => z.BlogDate).ToListAsync();
+        }
     }
 }

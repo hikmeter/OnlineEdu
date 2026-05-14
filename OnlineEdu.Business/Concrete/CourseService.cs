@@ -38,6 +38,11 @@ namespace OnlineEdu.Business.Concrete
             return _mapper.Map<GetCourseByIdDto>(value);
         }
 
+        public Task<int> GetCourseCount()
+        {
+            return _repository.CountAsync();
+        }
+
         public async Task<List<ResultCourseDto>> GetCourseList()
         {
             var values = await _repository.GetListAsync();

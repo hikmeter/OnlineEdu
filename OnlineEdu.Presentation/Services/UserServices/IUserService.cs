@@ -13,6 +13,9 @@ namespace OnlineEdu.Presentation.Services.UserServices
         Task<List<AssignRoleDto>> GetAssignRoleListAsync(int userId);
         Task<IdentityResult> AssignRoleAsync(int userId, List<AssignRoleDto> roleList);
         Task<List<AppUser>> GetAllUsersAsync();
+        Task<List<ResultUserDto>> GetAllTeachers();
         Task<AppUser> GetUserByIdAsync(int id);
+        Task<int> GetTeachersCount();
+        Task<int> GetStudentsCount();
     }
 }

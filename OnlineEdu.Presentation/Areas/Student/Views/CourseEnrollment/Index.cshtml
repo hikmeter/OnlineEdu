@@ -1,0 +1,50 @@
+﻿@model List<ResultCourseEnrollmentDto>
+
+@{
+	ViewData["Title"] = "Kurslarım";
+	Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+
+<div class="container-fluid px-4">
+    <div class="netflix-section">
+
+        <!-- Başlık ve Buton Alanı -->
+        <div class="netflix-header">
+            <div class="netflix-title">
+                🎓 Kayıtlı Kurslarım
+            </div>
+            <a href="/Student/CourseEnrollment/CreateCourseEnrollment" class="btn-create-course">
+                <span>➕ Yeni Kursa Kayıt Ol</span>
+            </a>
+        </div>
+
+        <div class="netflix-row">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <div class="netflix-card">
+                        <img src="@item.course.imageUrl" class="netflix-img" />
+                        <div class="netflix-body">
+                            <div class="netflix-title-text">
+                                @(item.course.courseName.Length > 45 ? item.course.courseName.Substring(0, 45) + "..." : item.course.courseName)
+                            </div>
+                            <div class="netflix-category">
+                                @(item.course.courseCategoryName != null ? item.course.courseCategoryName : "Kategori Yok")
+                            </div>
+                            <a href="/Student/Course/Detail/@item.course.courseId">
+                                <button class="netflix-btn">
+                                    Eğitime Git
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p class="text-muted">Henüz kayıtlı kursun yok.</p>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+﻿@model List<ResultCourseDto>
+@{
+    ViewData["Title"] = "Kurslara Göz At";
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm rounded mb-3">
+            <div class="card-body">
+                <h3 class="mb-1">Tüm Kurslarımız</h3>
+                <p class="text-muted mb-0">
+                    İstediğiniz kursu seçip hemen kayıt olabilirsiniz.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="netflix-row">
+		@foreach (var item in Model)
+		{
+			<div class="netflix-card">
+				<img src="@item.imageUrl" class="netflix-img" />
+				<div class="netflix-body">
+					<div class="netflix-title-text">
+						@(item.courseName.Length > 45 ? item.courseName.Substring(0, 45) + "..." : item.courseName)
+					</div>
+					<div class="netflix-category">
+						@(item.courseCategoryName != null ? item.courseCategoryName : "Kategori Yok")
+					</div>
+					<div class="netflix-price">
+						@item.price ₺
+					</div>
+					<form method="post">
+					<input type="hidden" name="courseId" value="@item.courseId" />
+					<a href="/Student/CourseEnrollment/CreateCourseEnrollment/@item.courseId">
+						<button type="submit" class="netflix-btn">
+							Kursa Kayıt Ol
+						</button>
+					</a>
+					</form>
+				</div>
+			</div>
+	}
+</div>

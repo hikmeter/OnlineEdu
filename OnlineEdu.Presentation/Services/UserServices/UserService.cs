@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OnlineEdu.Entity.Entities;
 using OnlineEdu.Presentation.Dtos.UserDtos;
 
 namespace OnlineEdu.Presentation.Services.UserServices
 {
-    public class UserService(UserManager<AppUser> _userManager, SignInManager<AppUser> _signInManager, RoleManager<AppRole> _roleManager) : IUserService
+    public class UserService(UserManager<AppUser> _userManager, SignInManager<AppUser> _signInManager, RoleManager<AppRole> _roleManager, IMapper _mapper) : IUserService
     {
         public async Task<IdentityResult> AssignRoleAsync(int userId, List<AssignRoleDto> roleList)
         {
@@ -54,6 +55,13 @@ namespace OnlineEdu.Presentation.Services.UserServices
             return result;
         }
 
+        public async Task<List<ResultUserDto>> GetAllTeachers()
+        {
+            var values = await _userManager.Users.Include(x => x.TeacherSocials).ToListAsync();
+            var teachers = values.Where(y => _userManager.IsInRoleAsync(y, "Teacher").Result).ToList();
+            return _mapper.Map<List<ResultUserDto>>(values);
+        }
+
         public async Task<List<AppUser>> GetAllUsersAsync()
         {
             return await _userManager.Users.ToListAsync();
@@ -75,6 +83,18 @@ namespace OnlineEdu.Presentation.Services.UserServices
                 });
             }
             return result;
+        }
+
+        public async Task<int> GetStudentsCount()
+        {
+            var values = await _userManager.GetUsersInRoleAsync("Student");
+            return values.Count;
+        }
+
+        public async Task<int> GetTeachersCount()
+        {
+            var values = await _userManager.GetUsersInRoleAsync("Teacher");
+            return values.Count;
         }
 
         public async Task<AppUser> GetUserByIdAsync(int id)

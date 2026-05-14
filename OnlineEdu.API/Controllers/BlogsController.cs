@@ -27,6 +27,14 @@ namespace OnlineEdu.API.Controllers
         {
             var values = await _blogService.GetAllBlogsWithCategoriesAndWriters();
             return Ok(values);
+
+        }
+
+        [HttpGet("Last4BlogsWithCategoriesAndWriters")]
+        public async Task<IActionResult> GetLast4BlogsWithCategoriesAndWriters()
+        {
+            var values = await _blogService.GetLast4BlogsWithCategoriesAndWriters();
+            return Ok(values);
         }
 
         [HttpGet("BlogsByWriterId/{id}")]
@@ -34,6 +42,13 @@ namespace OnlineEdu.API.Controllers
         {
             var values = await _blogService.GetBlogsByWriterId(id);
             return Ok(values);
+        }
+
+        [HttpGet("BlogCount")]
+        public async Task<IActionResult> GetBlogCount()
+        {
+            var value = await _blogService.GetBlogCount();
+            return Ok(value);
         }
 
         [HttpDelete("{id}")]
