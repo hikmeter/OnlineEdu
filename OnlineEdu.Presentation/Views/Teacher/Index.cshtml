@@ -1,0 +1,47 @@
+﻿@model List<ResultAppUserDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <!--? Hero Start -->
+    <div class="slider-area ">
+        <div class="slider-height2 d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap hero-cap2 text-center">
+                            <h2>Eğitmenlerimiz</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="team-area pt-160 pb-160">
+        <div class="container">
+            <div class="row">
+                @foreach(var item in Model){
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-team mb-30">
+                            <div class="team-img">
+                                <img src="@item.imageUrl" alt="Teacher">
+                                <ul class="team-social">
+                                    @foreach(var social in item.teacherSocials)
+                                    {
+                                        <li><a href="@social.url" target="_blank"><i class="@social.icon"></i></a></li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="team-caption">
+                                <h3><a href="instructor.html">@item.name @item.surname</a></h3>
+                                <p>Eğitmen</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</main>

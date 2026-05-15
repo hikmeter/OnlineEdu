@@ -8,5 +8,6 @@ namespace OnlineEdu.DataAccess.Abstract
         Task<Course> ToggleShownStatus(int id);
         Task<List<Course>> Get3ActivePopularCoursesAsync();
         Task<List<Course>> GetCoursesByTeacherIdAsync(int id);
+        Task<List<Course>> GetCoursesBCategoryIdAsync(int id);
     }
 }

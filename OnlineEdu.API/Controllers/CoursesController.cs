@@ -36,6 +36,13 @@ namespace OnlineEdu.API.Controllers
             return Ok(values);
         }
 
+        [HttpGet("CoursesByCategoryId/{id}")]
+        public async Task<IActionResult> GetCoursesByCategoryId(int id)
+        {
+            var values = await _courseService.GetCoursesByCategoryId(id);
+            return Ok(values);
+        }
+
         [HttpGet("CourseCount")]
         public async Task<IActionResult> GetCourseCount()
         {

@@ -8,6 +8,7 @@ namespace OnlineEdu.Business.Abstract
         Task<List<ResultCourseDto>> GetCourseList();
         Task<List<ResultCourseDto>> Get3ActivePopularCourses();
         Task<List<GetCoursesWithCategoriesDto>> GetCoursesByTeacherId(int id);
+        Task<List<GetCoursesWithCategoriesDto>> GetCoursesByCategoryId(int id);
         Task<List<GetCoursesWithCategoriesDto>> GetCoursesWithCategories();
         Task<int> GetCourseCount();
         Task<GetCourseByIdDto> GetCourseById(int id);

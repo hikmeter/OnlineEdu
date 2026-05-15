@@ -15,6 +15,7 @@ namespace OnlineEdu.API.Extensions
             services.AddScoped(typeof(ICourseRepository), typeof(CourseRepository));
             services.AddScoped(typeof(ITeacherSocialRepository), typeof(TeacherSocialRepository));
             services.AddScoped(typeof(ICourseEnrollmentRepository), typeof(CourseEnrollmentRepository));
+            services.AddScoped(typeof(IAppUserRepository), typeof(AppUserRepository));
             services.AddScoped(typeof(IAboutService), typeof(AboutService));
             services.AddScoped(typeof(IBannerService), typeof(BannerService));
             services.AddScoped(typeof(IBlogService), typeof(BlogService));
@@ -28,6 +29,7 @@ namespace OnlineEdu.API.Extensions
             services.AddScoped(typeof(ITestimonialService), typeof(TestimonialService));
             services.AddScoped(typeof(ITeacherSocialService), typeof(TeacherSocialService));
             services.AddScoped(typeof(ICourseEnrollmentService), typeof(CourseEnrollmentService));
+            services.AddScoped(typeof(IAppUserService), typeof(AppUserService));
         }
     }
 }

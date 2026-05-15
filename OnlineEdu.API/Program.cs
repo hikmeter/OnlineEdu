@@ -6,11 +6,13 @@ using OnlineEdu.Business.Validators.BlogValidators;
 using OnlineEdu.Business.Validators.CourseValidators;
 using OnlineEdu.Business.Validators.SubscriberValidators;
 using OnlineEdu.DataAccess.Context;
+using OnlineEdu.Entity.Entities;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<AppDbContext>();
 builder.Services.AddServiceExtensions();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
@@ -28,6 +30,7 @@ builder.Services.AddAutoMapper(typeof(SubscriberMapping));
 builder.Services.AddAutoMapper(typeof(TestimonialMapping));
 builder.Services.AddAutoMapper(typeof(TeacherSocialMapping));
 builder.Services.AddAutoMapper(typeof(CourseEnrollmentMapping));
+builder.Services.AddAutoMapper(typeof(AppUserMapping));
 
 builder.Services.AddValidatorsFromAssemblyContaining<CreateBlogDtoValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<UpdateBlogDtoValidator>();
