@@ -1,0 +1,56 @@
+﻿@model List<ResultBlogDto>
+@{
+	ViewData["Title"] = "BlogsByCategoryId";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="slider-area">
+	<div class="slider-height2 d-flex align-items-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-12">
+					<div class="hero-cap hero-cap2 text-center">
+						@foreach (var name in Model.Take(1))
+						{
+							<h2>@name.blogCategoryName Kursları</h2>
+						}
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<section class="blog_area section-padding">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 mb-5 mb-lg-0">
+				<div class="blog_left_sidebar">
+					@foreach (var item in Model)
+					{
+						<article class="blog_item">
+							<div class="blog_item_img">
+								<img class="card-img rounded-0" src="@item.imageUrl" alt="Blog">
+								<a href="#" class="blog_item_date">
+									<h3>@item.blogDate.Day</h3>
+									<p>@item.blogDate.ToString("MMMM", new System.Globalization.CultureInfo("tr-TR"))</p>
+								</a>
+							</div>
+							<div class="blog_details">
+								<a class="d-inline-block" href="/Blog/BlogDetail/@item.blogId">
+									<h2 class="blog-head" style="color: #2d2d2d;">@item.title</h2>
+								</a>
+								<p>@(item.content.Length > 80 ? item.content.Substring(0, 80) + "..." : item.content)</p>
+								<ul class="blog-info-link">
+									<li><a href="#"><i class="fa fa-user"></i> @item.writerName</a></li>
+									<li><a href="#"><i class="fa fa-comments"></i> @item.blogCategoryName</a></li>
+								</ul>
+							</div>
+						</article>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

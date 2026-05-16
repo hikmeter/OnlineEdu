@@ -8,8 +8,10 @@ namespace OnlineEdu.Business.Abstract
         Task<List<GetAllBlogsWithCategoriesDto>> GetAllBlogsWithCategoriesAndWriters();
         Task<List<GetAllBlogsWithCategoriesDto>> GetLast4BlogsWithCategoriesAndWriters();
         Task<List<GetAllBlogsWithCategoriesDto>> GetBlogsByWriterId(int id);
+        Task<List<GetAllBlogsWithCategoriesDto>> GetBlogsByCategoryId(int id);
         Task<int> GetBlogCount();
         Task<GetBlogByIdDto> GetBlogById(int id);
+        Task<GetBlogWithCategoryAndWriterByBlogIdDto> GetBlogWithCategoryAndWriterByBlogId(int id);
         Task CreateBlog(CreateBlogDto dto);
         Task UpdateBlog(UpdateBlogDto dto);
         Task DeleteBlog(int id);

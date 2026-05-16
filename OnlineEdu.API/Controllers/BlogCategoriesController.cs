@@ -15,6 +15,13 @@ namespace OnlineEdu.API.Controllers
             return Ok(values);
         }
 
+        [HttpGet("WithBlogCount")]
+        public async Task<IActionResult> GetBlogCategoriesWithBlogCount()
+        {
+            var values = await _blogCategoryService.GetBlogCategoriesWithBlogCount();
+            return Ok(values);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {

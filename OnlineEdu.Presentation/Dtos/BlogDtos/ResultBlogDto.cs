@@ -1,4 +1,6 @@
-﻿namespace OnlineEdu.Presentation.Dtos.BlogDtos
+﻿using OnlineEdu.Presentation.Dtos.TeacherSocialDtos;
+
+namespace OnlineEdu.Presentation.Dtos.BlogDtos
 {
     public class ResultBlogDto
     {
@@ -11,5 +13,6 @@
         public DateTime blogDate { get; set; }
         public int writerId { get; set; }
         public string writerName { get; set; }
+        public List<ResultTeacherSocialDto> teacherSocials { get; set; }
     }
 }

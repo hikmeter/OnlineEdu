@@ -1,0 +1,33 @@
+﻿@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+	<div class="slider-area ">
+		<div class="slider-height2 d-flex align-items-center">
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-12">
+						<div class="hero-cap hero-cap2 text-center">
+							<h2>İletişim</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<section class="contact-section">
+		<div class="container">
+			@await Component.InvokeAsync("_ContactMapComponentPartial")
+			<div class="row">
+				<div class="col-12">
+					<h2 class="contact-title">İletişime Geçin</h2>
+				</div>
+				@await Component.InvokeAsync("_ContactMessageComponentPartial")
+				@await Component.InvokeAsync("_ContactInfoComponentPartial")
+			</div>
+		</div>
+	</section>
+</main>

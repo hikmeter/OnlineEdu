@@ -2,7 +2,7 @@
 <div class="about-area section-padding2">
 	<div class="container">
 		<div class="row">
-			@foreach (var item in Model)
+			@foreach (var item in Model.Take(1))
 			{
 				<div class="col-lg-6 col-md-12">
 					<div class="about-caption mb-50">
@@ -17,7 +17,7 @@
 							<li><span class="flaticon-graduated"></span> @item.item3</li>
 							<li><span class="flaticon-tools-and-utensils"></span> @item.item4</li>
 						</ul>
-						<a href="about.html" class="btn">Dahası İçin</a>
+						<a href="/About/Index" class="btn">Dahası İçin</a>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-12">

@@ -1,0 +1,43 @@
+﻿<aside class="single_sidebar_widget newsletter_widget">
+    <h4 class="widget_title" style="color: #2d2d2d;">Bülten</h4>
+    <form asp-controller="Blog" asp-action="Subscribe" method="post">
+        <div class="form-group">
+            <input name="email" type="email" class="form-control" onfocus="this.placeholder = ''"
+                   onblur="this.placeholder = 'E-posta adresinizi giriniz.'" placeholder='E-posta adresinizi giriniz.' required>
+        </div>
+        <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+                type="submit">
+            Abone Ol
+        </button>
+    </form>
+</aside>
+
+<script>
+    $(document).ready(function () {
+
+        $(".single_sidebar_widget form").submit(function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: '/Blog/Subscribe',
+                type: 'POST',
+                data: $(this).serialize(),
+                success: function () {
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Başarılı!',
+                        text: 'Abonelik talebiniz başarı ile alınmıştır.'
+                    });
+
+                    // input temizle
+                    $("input[name='email']").val('');
+                },
+                error: function () {
+                    Swal.fire('Hata!', 'Bir sorun oluştu.', 'error');
+                }
+            });
+        });
+
+    });
+</script>

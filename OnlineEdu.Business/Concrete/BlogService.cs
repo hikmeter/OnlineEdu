@@ -49,10 +49,22 @@ namespace OnlineEdu.Business.Concrete
             return _mapper.Map<List<ResultBlogDto>>(values);
         }
 
+        public async Task<List<GetAllBlogsWithCategoriesDto>> GetBlogsByCategoryId(int id)
+        {
+            var values = await _blogRepository.GetBlogsByCategoryIdAsync(id);
+            return _mapper.Map<List<GetAllBlogsWithCategoriesDto>>(values);
+        }
+
         public async Task<List<GetAllBlogsWithCategoriesDto>> GetBlogsByWriterId(int id)
         {
             var values = await _blogRepository.GetBlogsByWriterIdAsync(id);
             return _mapper.Map<List<GetAllBlogsWithCategoriesDto>>(values);
+        }
+
+        public async Task<GetBlogWithCategoryAndWriterByBlogIdDto> GetBlogWithCategoryAndWriterByBlogId(int id)
+        {
+            var value = await _blogRepository.GetBlogWithCategoryAndWriterByBlogIdAsync(id);
+            return _mapper.Map<GetBlogWithCategoryAndWriterByBlogIdDto>(value);
         }
 
         public async Task<List<GetAllBlogsWithCategoriesDto>> GetLast4BlogsWithCategoriesAndWriters()

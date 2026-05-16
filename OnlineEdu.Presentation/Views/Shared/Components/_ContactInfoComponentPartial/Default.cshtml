@@ -1,0 +1,28 @@
+﻿@model List<ResultContactDto>
+@foreach(var item in Model)
+{
+    <div class="col-lg-3 offset-lg-1">
+        <div class="media contact-info">
+            <span class="contact-info__icon"><i class="ti-home"></i></span>
+            <div class="media-body">
+                <h3>@item.address</h3>
+                <p>Kapımız her zaman açık!</p>
+            </div>
+        </div>
+        <div class="media contact-info">
+            <span class="contact-info__icon"><i class="ti-tablet"></i></span>
+            <div class="media-body">
+                <h3>@item.phone</h3>
+                <p>Pazartesi'den Cuma'ya kadar 09.00-18.00 müsaitiz.</p>
+            </div>
+        </div>
+        <div class="media contact-info">
+            <span class="contact-info__icon"><i class="ti-email"></i></span>
+            <div class="media-body">
+                <h3>@item.email</h3>
+                <p>Bize istediğin zaman ulaşabilirsin!</p>
+            </div>
+        </div>
+    </div>
+}
+

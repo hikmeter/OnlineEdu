@@ -13,6 +13,7 @@ namespace OnlineEdu.Business.Mapping
             CreateMap<ResultBlogDto, Blog>().ReverseMap();
             CreateMap<GetBlogByIdDto, Blog>().ReverseMap();
             CreateMap<Blog, GetAllBlogsWithCategoriesDto>().ForMember(dest => dest.BlogCategoryName, opt => opt.MapFrom(src => src.BlogCategory.Name)).ForMember(dest => dest.WriterName, opt => opt.MapFrom(src => src.Writer.Name + " " + src.Writer.Surname));
+            CreateMap<Blog, GetBlogWithCategoryAndWriterByBlogIdDto>().ForMember(dest => dest.BlogCategoryName, opt => opt.MapFrom(src => src.BlogCategory.Name)).ForMember(dest => dest.WriterName, opt => opt.MapFrom(src => src.Writer.Name + " " + src.Writer.Surname)).ForMember(dest => dest.TeacherSocials, opt => opt.MapFrom(src => src.Writer.TeacherSocials));
         }
     }
 }

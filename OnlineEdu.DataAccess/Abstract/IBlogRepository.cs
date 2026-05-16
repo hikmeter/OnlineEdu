@@ -7,5 +7,7 @@ namespace OnlineEdu.DataAccess.Abstract
         Task<List<Blog>> GetAllBlogsWithCategoriesAndWritersAsync();
         Task<List<Blog>> GetLast4BlogsWithCategoriesAndWritersAsync();
         Task<List<Blog>> GetBlogsByWriterIdAsync(int id);
+        Task<List<Blog>> GetBlogsByCategoryIdAsync(int id);
+        Task<Blog> GetBlogWithCategoryAndWriterByBlogIdAsync(int id);
     }
 }

@@ -44,6 +44,13 @@ namespace OnlineEdu.API.Controllers
             return Ok(values);
         }
 
+        [HttpGet("BlogsByCategoryId/{id}")]
+        public async Task<IActionResult> GetBlogsByCategoryId(int id)
+        {
+            var values = await _blogService.GetBlogsByCategoryId(id);
+            return Ok(values);
+        }
+
         [HttpGet("BlogCount")]
         public async Task<IActionResult> GetBlogCount()
         {
@@ -56,6 +63,14 @@ namespace OnlineEdu.API.Controllers
         {
             await _blogService.DeleteBlog(id);
             return Ok("Blog Başarıyla Silindi!");
+        }
+
+        [HttpGet("BlogWithCategoryAndWriterByBlogId/{id}")]
+        public async Task<IActionResult> GetBlogWithCategoryAndWriterByBlogId(int id)
+        {
+            var values = await _blogService.GetBlogWithCategoryAndWriterByBlogId(id);
+            return Ok(values);
+
         }
 
         [HttpPost]

@@ -6,7 +6,7 @@ using OnlineEdu.Entity.Entities;
 
 namespace OnlineEdu.Business.Concrete
 {
-    public class BlogCategoryService(IRepository<BlogCategory> _repository, IMapper _mapper) : IBlogCategoryService
+    public class BlogCategoryService(IRepository<BlogCategory> _repository, IBlogCategoryRepository _categoryRepository, IMapper _mapper) : IBlogCategoryService
     {
         public async Task CreateBlogCategory(CreateBlogCategoryDto dto)
         {
@@ -18,6 +18,12 @@ namespace OnlineEdu.Business.Concrete
         {
             var value = await _repository.GetByIdAsync(id);
             await _repository.DeleteAsync(value);
+        }
+
+        public async Task<List<BlogCategoriesWithCountsDto>> GetBlogCategoriesWithBlogCount()
+        {
+            var values = await _categoryRepository.GetBlogCategoriesWithBlogCountAsync();
+            return _mapper.Map<List<BlogCategoriesWithCountsDto>>(values);
         }
 
         public async Task<GetBlogCategoryByIdDto> GetBlogCategoryById(int id)
